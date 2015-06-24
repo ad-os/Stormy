@@ -93,6 +93,7 @@ public class MainActivity extends ActionBarActivity {
         currentWeather.setSummary(currently.getString("summary"));
         currentWeather.setTemperature(currently.getDouble("temperature"));
         currentWeather.setTime(currently.getLong("time"));
+        currentWeather.setTimeZone(timezone);
         Log.i(TAG, "From Json" + timezone);
 
         return currentWeather;
