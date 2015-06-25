@@ -44,7 +44,7 @@
         android:layout_above="@id/timeLabel"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="60dp"
-        android:text="Alcatraz Island, CA"
+        android:text="TimeZone"
         android:textColor="@android:color/white"
         android:textSize="24sp"/>
 

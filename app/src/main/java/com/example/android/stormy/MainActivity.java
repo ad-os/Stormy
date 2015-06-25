@@ -50,6 +50,7 @@ public class MainActivity extends ActionBarActivity {
     @InjectView(R.id.iconImageView) ImageView mIconImageView;
     @InjectView(R.id.refreshImageView) ImageView mRefreshImageView;
     @InjectView(R.id.progressBar) ProgressBar mProgressBar;
+    @InjectView(R.id.locationLabel) TextView mLocationLabel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,8 +87,7 @@ public class MainActivity extends ActionBarActivity {
         String apiKey = "da6e8c57e760581f8262058f6a28c70c";
 
         String forecastUrl = "https://api.forecast.io/forecast/" + apiKey +
-                "/" + latitude + "," + longitude + "?units=si" +
-                "";
+                "/" + latitude + "," + longitude + "?units=si" + "";
 
         if(isNetworkConnected()) {
 
@@ -166,7 +166,7 @@ public class MainActivity extends ActionBarActivity {
         mHumidityValue.setText(mCurrentWeather.getHumidity() + "");
         mPrecipValue.setText(mCurrentWeather.getPrecipChance() + "%");
         mSummaryLabel.setText(mCurrentWeather.getSummary());
-
+        mLocationLabel.setText(mCurrentWeather.getLocationLabel());
 
         Drawable drawable = getResources().getDrawable(mCurrentWeather.getIconId());
         mIconImageView.setImageDrawable(drawable);
@@ -187,6 +187,7 @@ public class MainActivity extends ActionBarActivity {
         currentWeather.setTemperature(currently.getDouble("temperature"));
         currentWeather.setTime(currently.getLong("time"));
         currentWeather.setTimeZone(timezone);
+        currentWeather.setLocationLabel(timezone);
         Log.i(TAG, "From Json" + timezone);
 
         return currentWeather;
