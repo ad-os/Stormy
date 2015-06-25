@@ -1,6 +1,8 @@
 package com.example.android.stormy;
 
+import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -13,6 +15,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
@@ -31,8 +37,9 @@ import butterknife.InjectView;
 public class MainActivity extends ActionBarActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
-
     private CurrentWeather mCurrentWeather;
+    private double mCurrentLatitude;
+    private double mCurrentLongitude;
 
     //@function is called as annotation as it expands the one line of code.
     @InjectView(R.id.timeLabel) TextView mTimeLabel;
@@ -50,27 +57,37 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
 
+        Intent intent = new Intent(this, MapsActivity.class);
+        startActivityForResult(intent, 1);
+
         mProgressBar.setVisibility(View.INVISIBLE);
-
-        mRefreshImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getForecast();
-            }
-        });
-
-        getForecast();
-
         Log.v(TAG, "Executing main thread");
-}
+    }
 
-    public void getForecast() {
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null){
+            mCurrentLatitude = data.getDoubleExtra("latitude", 37.8267);
+            mCurrentLongitude = data.getDoubleExtra("longitude", -122.423);
+            getForecast(mCurrentLatitude, mCurrentLongitude);
+            mRefreshImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getForecast(mCurrentLatitude, mCurrentLongitude);
+                }
+            });
+        }
+    }
+
+    public void getForecast(double latitude, double longitude) {
+
+
         String apiKey = "da6e8c57e760581f8262058f6a28c70c";
-        double latitude = 37.8267;
-        double longitude = -122.423;
 
         String forecastUrl = "https://api.forecast.io/forecast/" + apiKey +
-                "/" + latitude + "," + longitude;
+                "/" + latitude + "," + longitude + "?units=si" +
+                "";
 
         if(isNetworkConnected()) {
 

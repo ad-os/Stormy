@@ -1,0 +1,18 @@
+<resources>
+    <!--
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=29:F4:1A:49:EF:3B:ED:06:AA:25:A6:63:A4:00:3F:34:2A:20:9F:FE%3Bcom.example.android.stormy
+
+    You can also add your credentials to an existing key, using this line:
+    29:F4:1A:49:EF:3B:ED:06:AA:25:A6:63:A4:00:3F:34:2A:20:9F:FE;com.example.android.stormy
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <string name="google_maps_key" translatable="false" templateMergeStrategy="preserve">
+        YOUR_KEY_HERE
+    </string>
+</resources>
