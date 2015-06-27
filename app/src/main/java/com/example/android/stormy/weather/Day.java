@@ -98,6 +98,8 @@ public class Day implements Parcelable{
         mTimeZone = in.readString();
     }
 
+    //This is how the creator works.
+
     public static final Creator<Day> CREATOR = new Creator<Day>() {
         @Override
         public Day createFromParcel(Parcel source) {

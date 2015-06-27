@@ -48,4 +48,5 @@
         tools:text="Wednesday"
         android:paddingLeft="10dp"/>
 
+
 </RelativeLayout>
