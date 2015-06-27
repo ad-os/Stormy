@@ -26,12 +26,12 @@ public class DayAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return mDays.length;
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return mDays[position];
     }
 
     @Override
@@ -49,6 +49,7 @@ public class DayAdapter extends BaseAdapter {
         if(convertView == null){
             //brand new.
             //layout inflater turns a layout view into code so the we can use the views contained in them.
+            //from(mContext) takes Layout inflater from this application or context.
             convertView = LayoutInflater.from(mContext).inflate(R.layout.daily_list_item, null);
             holder = new ViewHolder();
             holder.iconImageView = (ImageView) convertView.findViewById(R.id.iconImageView);
@@ -65,14 +66,13 @@ public class DayAdapter extends BaseAdapter {
         Day day = mDays[position];
 
         holder.iconImageView.setImageResource(day.getIconId());
-        holder.dayLabel.setText(day.getTemperatureMax() + "");
+        holder.temperatureLabel.setText(day.getTemperatureMax() + "");
         holder.dayLabel.setText(day.getDayOfTheWeek());
-
 
         return convertView;
     }
 
-    public static class ViewHolder{
+    public static class ViewHolder {
         ImageView iconImageView;
         TextView temperatureLabel;
         TextView dayLabel;
