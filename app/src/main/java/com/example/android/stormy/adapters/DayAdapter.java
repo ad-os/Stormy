@@ -15,7 +15,7 @@ import com.example.android.stormy.weather.Day;
  * Created by adhyan on 26/6/15.
  */
 public class DayAdapter extends BaseAdapter {
-
+    //A adapter adapts to the kind of view whether a list view or a recycler view.
     private Context mContext;
     private Day[] mDays;
 
@@ -40,7 +40,7 @@ public class DayAdapter extends BaseAdapter {
     }
 
     //this method is called every time we scroll or to get new item in the list.
-
+    //getView maps the data.
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -72,6 +72,7 @@ public class DayAdapter extends BaseAdapter {
         return convertView;
     }
 
+    //ViewHolder contains the view.
     public static class ViewHolder {
         ImageView iconImageView;
         TextView temperatureLabel;

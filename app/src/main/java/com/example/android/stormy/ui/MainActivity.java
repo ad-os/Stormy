@@ -8,7 +8,6 @@ import android.net.NetworkInfo;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.stormy.R;
-import com.example.android.stormy.adapters.DayAdapter;
 import com.example.android.stormy.weather.Current;
 import com.example.android.stormy.weather.Day;
 import com.example.android.stormy.weather.ForeCast;
@@ -42,11 +40,11 @@ public class MainActivity extends ActionBarActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
     public static final String DAILY_FORECAST = "DAILY_FORECAST";
+    public static final String HOURLY_FORECAST = "HOURLY_FORECAST";
 
     private double mCurrentLatitude;
     private double mCurrentLongitude;
     private ForeCast mForeCast;
-    private Day[] mDays;
 
     //@function is called as annotation as it expands the one line of code.
     @InjectView(R.id.timeLabel) TextView mTimeLabel;
@@ -290,6 +288,14 @@ public class MainActivity extends ActionBarActivity {
         intent.putExtra(DAILY_FORECAST, mForeCast.getDailyForecast());
         startActivity(intent);
 
+    }
+
+    @OnClick(R.id.hourlyButton)
+    public void startHourlyActivity(View view){
+
+        Intent intent = new Intent(this, HourlyForecastActivity.class);
+        intent.putExtra(HOURLY_FORECAST, mForeCast.getHourlyForecast());
+        startActivity(intent);
     }
 
 }
