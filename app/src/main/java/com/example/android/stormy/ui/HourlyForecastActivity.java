@@ -34,7 +34,7 @@ public class HourlyForecastActivity extends AppCompatActivity {
         Parcelable[] parcelables = intent.getParcelableArrayExtra(MainActivity.HOURLY_FORECAST);
         mHour = Arrays.copyOf(parcelables, parcelables.length, Hour[].class);
 
-        HourAdapter adapter = new HourAdapter(mHour);
+        HourAdapter adapter = new HourAdapter(mHour, this);
 
         mRecyclerView.setAdapter(adapter);
 
@@ -46,6 +46,8 @@ public class HourlyForecastActivity extends AppCompatActivity {
 
         //This has to do only with performance if the is of fixed size.
         mRecyclerView.setHasFixedSize(true);
+
+        //we need to set OnViewClickListner .
     }
 
 }
